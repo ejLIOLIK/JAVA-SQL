@@ -16,22 +16,22 @@ public class Util {
 	public static ResultSet result = null;
 	public static Scanner sc = new Scanner(System.in);
 	public static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+	public static int mountBoard = 0;
 	
 	public static void dbExecuteQuery(String query) {
 		
 		String str="";
 		
 		try {
-			
 			result = st.executeQuery(query);
 
 			while (result.next()) {	// 결과를 하나씩 빼기. 더 이상 없으면(행 수가 끝나면) false 리턴됨.
 				str += "글번호: " + result.getString("num") + "		";	// p_name 필드(열) 의 데이터 꺼내기(1개 꺼낸거에서)
-				str += "ID: " + result.getString("ID") + "	\n";	// p_name 필드(열) 의 데이터 꺼내기(1개 꺼낸거에서)
+				str += "ID: " + result.getString("ID") + "	\n";	
 				str += "글제목: " + result.getString("title") + "\n";
 				str += "조회수: " + result.getString("hit") + "\n";
 				
-				str += result.getString("contents") + "	";	// p_name 필드(열) 의 데이터 꺼내기(1개 꺼낸거에서)
+				str += result.getString("contents") + "	";	
 
 				System.out.println(str);
 			}
@@ -79,6 +79,18 @@ public class Util {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static int countBoard() { // 게시글 총 수량 리턴 
+		try {
+			result = st.executeQuery("select count(*) from board;");
+			if (result.next()) {
+				return result.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 }
