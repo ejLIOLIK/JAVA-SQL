@@ -10,11 +10,11 @@ public class ProcEditsql {
 		String tmp="";
 
 		System.out.println("수정할 글 번호를 입력하세요.");
-		String num = ScanUtil.read();
+		String num = ScanUtil.readlong();
 		
 		System.out.println("수정할 부분을 선택하세요.");
 		System.out.println("[1]글제목 [2]글내용 [3]ID");
-		String editStr = ScanUtil.read();
+		String editStr = ScanUtil.readlong();
 		
 		System.out.println("수정할 내용을 입력하세요.");		
 				

@@ -17,7 +17,7 @@ public class ProcBoard {
 		
 			String key = "";
 			Display.showMainMenu();
-			key = ScanUtil.read();
+			key = ScanUtil.readlong();
 
 			// "[1]글리스트 [2]글읽기 [3]글쓰기 [4]글삭제 [5]글수정" e종료;
 			switch (key) {

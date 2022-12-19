@@ -27,7 +27,7 @@ public class ProcListsql {
 			Display.Line();
 			System.out.println("[1~" + mountPage + "] 해당 페이지로 이동 [0] 뒤로 ");
 			
-			String keyStr = ScanUtil.read();
+			String keyStr = ScanUtil.readlong();
 			key = Util.EctUtil.intToString(keyStr);
 			
 			if (key == 0) {

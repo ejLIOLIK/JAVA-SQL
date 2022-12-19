@@ -9,7 +9,7 @@ public class ProcReadsql {
 	static void run() {
 
 		System.out.println("읽을 글 번호를 입력하세요. [e]뒤로");
-		String num = ScanUtil.read();
+		String num = ScanUtil.readlong();
 
 		loop_Read : while (true) {
 			
@@ -28,7 +28,7 @@ public class ProcReadsql {
 
 				// 덧글달기 선택지
 				Display.showReplyMenu();
-				String key = Util.ScanUtil.read();
+				String key = Util.ScanUtil.readlong();
 				
 				// [r]리플입력 [e]뒤로
 				switch (key) {
@@ -40,7 +40,7 @@ public class ProcReadsql {
 
 					// ======================================================================
 					System.out.println("ID를 입력하세요");
-					String ID = ScanUtil.read();
+					String ID = ScanUtil.readlong();
 
 					// 덧글 입력
 					DB.dbExecuteUpdate("insert reply set replyNum = '" + num + "', replyText = '" + replyCon

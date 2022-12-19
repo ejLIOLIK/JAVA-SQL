@@ -20,7 +20,7 @@ public class ProcWritesql {
 		
 		// ======================================================================
 		System.out.println("ID를 입력하세요");
-		String ID = ScanUtil.read();
+		String ID = ScanUtil.readlong();
 		// ======================================================================		
 		
 		DB.dbExecuteUpdate("insert into board (title, ID, date, contents, hit, replyCount) values('" + title + "', '"+ ID +"', now(), '"+ contents +"', 0, 0);");

@@ -9,7 +9,7 @@ public class ProcDeletesql {
 		
 		System.out.println("삭제할 글 번호를 입력하세요.");
 	
-		String num = ScanUtil.read();
+		String num = ScanUtil.readlong();
 		
 		DB.dbExecuteUpdate("delete from board where num="+num);
 		DB.dbExecuteUpdate("delete from reply where replyNum="+num); // 리플 테이블도 삭제
