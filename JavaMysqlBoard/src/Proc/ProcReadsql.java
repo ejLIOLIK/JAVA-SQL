@@ -2,14 +2,15 @@ package Proc;
 
 import DB.DB;
 import Mysql.Display;
-import Util.ScanUtil;
+import Util.Csc;
+import Util.Ctx;
 
 public class ProcReadsql {
 
 	static void run() {
 
-		System.out.println("읽을 글 번호를 입력하세요. [e]뒤로");
-		String num = ScanUtil.readlong();
+		Ctx.wn("읽을 글 번호를 입력하세요. [e]뒤로");
+		String num = Csc.readlong();
 
 		loop_Read : while (true) {
 			
@@ -28,19 +29,19 @@ public class ProcReadsql {
 
 				// 덧글달기 선택지
 				Display.showReplyMenu();
-				String key = Util.ScanUtil.readlong();
+				String key = Util.Csc.readlong();
 				
 				// [r]리플입력 [e]뒤로
 				switch (key) {
 				case "r":
 					String replyCon = "";
 					// ======================================================================
-					System.out.println("리플을 입력해주세요:");
-					replyCon = ScanUtil.readlong();
+					Ctx.wn("리플을 입력해주세요:");
+					replyCon = Csc.readlong();
 
 					// ======================================================================
-					System.out.println("ID를 입력하세요");
-					String ID = ScanUtil.readlong();
+					Ctx.wn("ID를 입력하세요");
+					String ID = Csc.readlong();
 
 					// 덧글 입력
 					DB.dbExecuteUpdate("insert reply set replyNum = '" + num + "', replyText = '" + replyCon
@@ -51,7 +52,7 @@ public class ProcReadsql {
 					break;
 				case "e":
 					break loop_Read;
-				default:
+				default:					
 				}
 			}
 		}

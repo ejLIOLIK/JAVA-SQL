@@ -1,7 +1,8 @@
 package Proc;
 
 import DB.DB;
-import Util.ScanUtil;
+import Util.Csc;
+import Util.Ctx;
 
 public class ProcWritesql {
 
@@ -11,22 +12,21 @@ public class ProcWritesql {
 		String title = "";
 
 		// ======================================================================
-		System.out.println("글제목을 입력해주세요:");
-		title = ScanUtil.readlong();
+		Ctx.wn("글제목을 입력해주세요:");
+		title = Csc.readlong();
 		
 		// ======================================================================
-		System.out.println("글내용을 입력해주세요:");
-		contents = ScanUtil.readlong();
+		Ctx.wn("글내용을 입력해주세요:");
+		contents = Csc.readlong();
 		
 		// ======================================================================
-		System.out.println("ID를 입력하세요");
-		String ID = ScanUtil.readlong();
+		Ctx.wn("ID를 입력하세요");
+		String ID = Csc.readlong();
 		// ======================================================================		
 		
 		DB.dbExecuteUpdate("insert into board (title, ID, date, contents, hit, replyCount) values('" + title + "', '"+ ID +"', now(), '"+ contents +"', 0, 0);");
 		
-		System.out.println("게시글이 등록되었습니다.");
-		
+		Ctx.wn("게시글이 등록되었습니다.");
 		
 	}
 }

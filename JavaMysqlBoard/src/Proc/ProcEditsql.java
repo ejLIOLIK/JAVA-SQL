@@ -1,7 +1,8 @@
 package Proc;
 
 import DB.DB;
-import Util.ScanUtil;
+import Util.Csc;
+import Util.Ctx;
 
 public class ProcEditsql {
 	
@@ -9,16 +10,16 @@ public class ProcEditsql {
 		
 		String tmp="";
 
-		System.out.println("수정할 글 번호를 입력하세요.");
-		String num = ScanUtil.readlong();
+		Ctx.wn("수정할 글 번호를 입력하세요.");
+		String num = Csc.readlong();
 		
-		System.out.println("수정할 부분을 선택하세요.");
-		System.out.println("[1]글제목 [2]글내용 [3]ID");
-		String editStr = ScanUtil.readlong();
+		Ctx.wn("수정할 부분을 선택하세요.");
+		Ctx.wn("[1]글제목 [2]글내용 [3]ID");
+		String editStr = Csc.readlong();
 		
-		System.out.println("수정할 내용을 입력하세요.");		
+		Ctx.wn("수정할 내용을 입력하세요.");		
 				
-		tmp = ScanUtil.readlong();
+		tmp = Csc.readlong();
 		
 		switch(editStr) {
 		case "1": 
@@ -33,7 +34,7 @@ public class ProcEditsql {
 			default:
 		}
 				
-		System.out.println(num + "번 게시글이 수정되었습니다.");
+		Ctx.wn(num + "번 게시글이 수정되었습니다.");
 	}
 
 }

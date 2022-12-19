@@ -2,7 +2,7 @@ package Proc;
 
 import DB.DB;
 import Mysql.Display;
-import Util.ScanUtil;
+import Util.Csc;
 
 public class ProcBoard {
 
@@ -17,9 +17,9 @@ public class ProcBoard {
 		
 			String key = "";
 			Display.showMainMenu();
-			key = ScanUtil.readlong();
+			key = Csc.readlong();
 
-			// "[1]글리스트 [2]글읽기 [3]글쓰기 [4]글삭제 [5]글수정" e종료;
+			// [1]글리스트 [2]글읽기 [3]글쓰기 [4]글삭제 [5]글수정 [6]검색 [e]종료
 			switch (key) {
 			case "1":
 				ProcListsql.run();
@@ -35,6 +35,9 @@ public class ProcBoard {
 				break;
 			case "5":
 				ProcEditsql.run();
+				break;
+			case "6":
+				ProcSearchsql.run();
 				break;
 			case "e":
 				System.out.println("종료됩니다.");

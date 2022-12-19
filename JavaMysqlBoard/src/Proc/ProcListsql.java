@@ -2,7 +2,8 @@ package Proc;
 
 import DB.DB;
 import Mysql.Display;
-import Util.ScanUtil;
+import Util.Csc;
+import Util.Ctx;
 
 public class ProcListsql {
 	
@@ -10,47 +11,53 @@ public class ProcListsql {
 	
 	static void run() {
 		
+		String str = "select * from board ";
+		int mount = DB.countBoard("select count(*) from board;");
+		printList(str, mount);
+		
+	} 
+	
+	static void printListPage(String query, int key, int mountPage) {
+		
+		Display.showListTitle();
+		DB.dbExecuteQueryList(query); // 페이지 출력
+		Display.Line();
+		Ctx.wn("page" + (key) + "/" + mountPage);
+	}
+	
+	static void printList(String str, int mount) {
+		
 		int key;
 		int mountPage;
-		
-		if(DB.countBoard()%PAGE==0) {
-			mountPage = DB.countBoard()/PAGE;}
+				
+		if(mount%PAGE==0) {
+			mountPage = mount/PAGE;
+		}
 		else {
-			mountPage = DB.countBoard()/PAGE+1;
+			mountPage = mount/PAGE+1;
 		}
 		
-		Display.Line();
-		
-		printList("select * from board order by num desc limit 0,5;", 1, mountPage);
+		printListPage(str + "order by num desc limit 0,5;", 1, mountPage);
 
 		while (true) {
 			Display.Line();
-			System.out.println("[1~" + mountPage + "] 해당 페이지로 이동 [0] 뒤로 ");
-			
-			String keyStr = ScanUtil.readlong();
-			key = Util.EctUtil.intToString(keyStr);
+			Ctx.wn("[1~" + mountPage + "] 해당 페이지로 이동 [0] 뒤로 ");
+			String keyStr = Csc.readlong();
+			key = Util.Cet.intToString(keyStr);
 			
 			if (key == 0) {
 				break;
 			} 
 			else {
 				if (key > mountPage) {
-					System.out.println("해당 페이지가 없습니다.");
+					Ctx.wn("해당 페이지가 없습니다.");
 				} else {
-					printList("select * from board order by num desc limit " + ((key - 1) * PAGE) + "," + PAGE + ";"
+					printListPage(str + "order by num desc limit " + ((key - 1) * PAGE) + "," + PAGE + ";"
 							, key, mountPage);
 				}
 			}
 			
 		}
-	} 
-	
-	static void printList(String query, int key, int mountPage) {
-		
-		Display.showListTitle();
-		DB.dbExecuteQueryList(query); // 첫 페이지 출력
-		Display.Line();
-		System.out.println("page" + (key) + "/" + mountPage);
 	}
 
 }
